@@ -1,4 +1,10 @@
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0
+
+
+}
 :root{
   --bg-1:#7c3aed;
   --bg-2:#06b6d4;
