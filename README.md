@@ -94,4 +94,11 @@ Comprendre comment travailler en équipe avec GitHub et réussir une première c
 
 ---
 
+---- Commande pour Git. Ne l'oublie pas si non tu connais ton sort 😁
+---------------------------
+git checkout main 
+git pull origin main 
+git checkout ma-branche 
+git merge main
+---------------------------
 🔥 Projet réalisé en équipe dans une logique d’apprentissage et de progression.
