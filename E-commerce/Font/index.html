@@ -1,35 +1,129 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MaBoutique — Accueil</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="Style/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-  <main class="container">
-    <header>
-      <div class="brand">MaBoutique</div>
-      <nav>
-        <a href="html/produit.html">Produits</a>
-        <a href="html/cart.html">Panier</a>
-      </nav>
-    </header>
 
-    <section class="hero">
-      <div class="text">
-        <h1>Bienvenue sur MaBoutique</h1>
-        <p class="lead">Découvrez une sélection de produits choisis avec soin. Design moderne, livraison rapide et service client réactif.</p>
-        <a class="cta" href="html/produit.html">Voir les produits</a>
-      </div>
+<!-- 🔝 HEADER -->
+<header class="header">
+    <div class="logo">🛒 ShopElite</div>
 
-      <div class="illustration" aria-hidden="true">
-        Image produit
-      </div>
-    </section>
+    <nav class="navbar">
+        <a href="#">Accueil</a>
+        <a href="products.html">Produits</a>
+        <a href="#">Catégories</a>
+        <a href="#">Contact</a>
+    </nav>
 
-    <div class="footer">© 2026 MaBoutique — Tous droits réservés tu connais deja  👍🏾 Genius</div>
-  </main>
+    <div class="header-icons">
+        <span>🔍</span>
+        <span>🛒</span>
+        <span>👤</span>
+    </div>
+</header>
+
+<!-- 🎯 HERO SECTION -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Découvrez les meilleures offres</h1>
+        <p>Des produits de qualité à des prix imbattables</p>
+        <button>Voir les produits</button>
+    </div>
+</section>
+
+<!-- ⭐ FEATURES -->
+<section class="features">
+    <div class="feature">
+        <h3>🚚 Livraison rapide</h3>
+        <p>Recevez vos produits en un temps record</p>
+    </div>
+
+    <div class="feature">
+        <h3>💳 Paiement sécurisé</h3>
+        <p>Vos transactions sont 100% sécurisées</p>
+    </div>
+
+    <div class="feature">
+        <h3>📦 Produits de qualité</h3>
+        <p>Nous sélectionnons les meilleurs produits</p>
+    </div>
+</section>
+
+<!-- 🛍️ PRODUITS POPULAIRES -->
+<section class="products">
+    <h2>Produits populaires</h2>
+
+    <div class="product-container">
+
+        <div class="product-card">
+            <img src="images/product1.jpg" alt="Produit">
+            <h3>Chaussures</h3>
+            <p>50$</p>
+            <button>Ajouter au panier</button>
+        </div>
+
+        <div class="product-card">
+            <img src="images/product2.jpg" alt="Produit">
+            <h3>T-shirt</h3>
+            <p>20$</p>
+            <button>Ajouter au panier</button>
+        </div>
+
+        <div class="product-card">
+            <img src="images/product3.jpg" alt="Produit">
+            <h3>Montre</h3>
+            <p>100$</p>
+            <button>Ajouter au panier</button>
+        </div>
+
+    </div>
+</section>
+
+<!-- 📢 BANNIÈRE PROMO -->
+<section class="promo">
+    <h2>🔥 Promotion spéciale -50%</h2>
+    <p>Ne ratez pas cette offre limitée</p>
+    <button>Acheter maintenant</button>
+</section>
+
+<!-- 📬 NEWSLETTER -->
+<section class="newsletter">
+    <h2>Abonnez-vous</h2>
+    <p>Recevez nos meilleures offres</p>
+    
+    <form>
+        <input type="email" placeholder="Votre email">
+        <button>S'inscrire</button>
+    </form>
+</section>
+
+<!-- 📞 FOOTER -->
+<footer class="footer">
+
+    <div class="footer-section">
+        <h3>ShopElite</h3>
+        <p>Votre boutique en ligne de confiance</p>
+    </div>
+
+    <div class="footer-section">
+        <h3>Liens</h3>
+        <a href="#">Accueil</a>
+        <a href="#">Produits</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <div class="footer-section">
+        <h3>Contact</h3>
+        <p>Email: contact@shop.com</p>
+        <p>Tél: +243 000 000 000</p>
+    </div>
+
+</footer>
+
 </body>
 </html>
