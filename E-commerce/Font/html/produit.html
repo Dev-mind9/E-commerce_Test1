@@ -1,14 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=h1, initial-scale=1.0">
-    <link rel="stylesheet" href="Style/style.css">
-    <title>produit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produits | ShopElite</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <h1>Nos produits de bonne qualites </h1>
-    <div id="produits"></div>
-    <h4>produits</h4>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="logo">ShopElite</div>
+
+    <nav class="nav">
+        <a href="index.html">Accueil</a>
+        <a href="products.html">Produits</a>
+        <a href="cart.html">Panier</a>
+    </nav>
+
+    <div class="header-actions">
+        <input type="text" placeholder="Rechercher...">
+        <span class="cart-count">0</span>
+    </div>
+</header>
+
+<!-- FILTRES -->
+<section class="filters">
+    <h2>Filtres</h2>
+
+    <div class="filter-group">
+        <label>Catégorie</label>
+        <select>
+            <option>Toutes</option>
+            <option>Chaussures</option>
+            <option>Vêtements</option>
+        </select>
+    </div>
+
+    <div class="filter-group">
+        <label>Prix</label>
+        <select>
+            <option>Tous</option>
+            <option>0 - 50$</option>
+            <option>50$ - 100$</option>
+        </select>
+    </div>
+</section>
+
+<!-- PRODUITS -->
+<section class="products">
+
+    <h2>Nos Produits</h2>
+
+    <div class="products-grid">
+
+        <!-- PRODUCT CARD -->
+        <div class="product-card">
+
+            <div class="product-image">
+                <img src="images/product1.jpg" alt="Produit">
+                <span class="badge">-20%</span>
+            </div>
+
+            <div class="product-body">
+                <h3>Chaussures modernes</h3>
+                <p class="description">Confort et style pour tous les jours</p>
+
+                <div class="price">
+                    <span class="current">$50</span>
+                    <span class="old">$70</span>
+                </div>
+
+                <div class="actions">
+                    <button class="btn-cart">Ajouter au panier</button>
+                    <button class="btn-view">Voir</button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- DUPLIQUE POUR PLUS DE PRODUITS -->
+
+    </div>
+
+</section>
+
 </body>
 </html>

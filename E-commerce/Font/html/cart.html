@@ -1,13 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Style/style.css">
-    <title>Document</title>
+    <title>Panier | ShopElite</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <h1>Panier</h1>
-    <div id="cart"></div>
+
+<!-- 🔝 HEADER -->
+<header class="header">
+    <div class="logo">🛒 ShopElite</div>
+
+    <nav class="nav">
+        <a href="index.html">Accueil</a>
+        <a href="products.html">Produits</a>
+        <a href="cart.html">Panier</a>
+    </nav>
+</header>
+
+<!-- 🛒 CONTENU PRINCIPAL -->
+<main class="cart-page">
+
+    <!-- 🧾 LISTE DES PRODUITS -->
+    <section class="cart-items">
+
+        <h2>Votre Panier</h2>
+
+        <!-- ITEM -->
+        <div class="cart-item">
+
+            <div class="cart-image">
+                <img src="images/product1.jpg" alt="Produit">
+            </div>
+
+            <div class="cart-details">
+                <h3>Chaussures modernes</h3>
+                <p class="price">$50</p>
+
+                <div class="quantity-control">
+                    <button class="decrease">-</button>
+                    <span class="quantity">1</span>
+                    <button class="increase">+</button>
+                </div>
+            </div>
+
+            <div class="cart-total">
+                <p>Total : $50</p>
+            </div>
+
+            <div class="cart-remove">
+                <button class="remove-btn">❌</button>
+            </div>
+
+        </div>
+
+        <!-- DUPLIQUE POUR PLUS DE PRODUITS -->
+
+    </section>
+
+    <!-- 💰 RÉSUMÉ -->
+    <aside class="cart-summary">
+
+        <h2>Résumé</h2>
+
+        <div class="summary-line">
+            <span>Sous-total</span>
+            <span>$50</span>
+        </div>
+
+        <div class="summary-line">
+            <span>Livraison</span>
+            <span>$5</span>
+        </div>
+
+        <div class="summary-line total">
+            <span>Total</span>
+            <span>$55</span>
+        </div>
+
+        <button class="checkout-btn">Passer la commande</button>
+
+    </aside>
+
+</main>
+
+<!-- 📬 FOOTER -->
+<footer class="footer">
+    <p>© 2026 ShopElite - Tous droits réservés</p>
+</footer>
+
 </body>
 </html>
