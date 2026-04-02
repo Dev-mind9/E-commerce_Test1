@@ -77,6 +77,18 @@ body {
     color: var(--white);
     transform: scale(1.1);
 }
+.menu-icon {
+  width: 25px;      /* taille idéale */
+  height: 25px;
+  object-fit: contain;
+  cursor: pointer;  /* effet clic */
+}
+#menicon2{
+    display: none;
+}
+#menicon1{
+    display: none;
+}
 
 /* ---------- HERO SECTION ---------- */
 .hero {
@@ -203,7 +215,7 @@ button:hover {
     margin-bottom: 20px;
 }
 .hero{
-    background-image: url(images/banniere.png);
+    background-image: url("images/banniere.png");
     background-size: cover;
     background-position: center;
 }
@@ -261,4 +273,5 @@ button:hover {
     .hero-content h1 { font-size: 2.8rem; }
     .newsletter input { width: 100%; margin-bottom: 20px; }
     .header { padding: 15px 5%; }
+
 }

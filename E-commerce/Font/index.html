@@ -49,7 +49,12 @@
         <span>🔍</span>
         <span>🛒</span>
         <span>👤</span>
-    </div>
+        <span>
+        <img class="menu-icon" id="menicon1" onclick="humberger()" src="images/12+ Burger Menu Icon White Png.jpg">
+        <img class="menu-icon" id="menicon2" onclick="humberger()" src="images/Sans titre.jpg">
+        </span>
+
+
 </header>
 
 <!-- 🎯 HERO SECTION -->
@@ -157,3 +162,21 @@
 
 </body>
 </html>
+<script >
+  function humberger(){
+   let icone1 = document.getElementById("menicon1"); 
+    let icone2 = document.getElementById("menicon2"); 
+
+    
+    
+    if (icone1.style.display !== "none") {
+        icone1.style.display = "none";
+        icone2.style.display = "block";
+    } else {
+        
+        icone1.style.display = "block";
+        icone2.style.display = "none";
+    }
+}
+
+</script>
