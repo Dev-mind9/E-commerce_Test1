@@ -77,6 +77,74 @@ body {
     color: var(--white);
     transform: scale(1.1);
 }
+.menu-icon {
+  width: 25px;      /* taille idéale */
+  height: 25px;
+  object-fit: contain;
+  cursor: pointer;  /* effet clic */
+}
+
+#menicon2{
+    display: none;
+}
+#menicon1{
+    display: none;
+}
+.iconhamber1{
+    
+    display: none;
+}
+.iconhamber{
+    justify-content: end;
+    display: flex;
+}
+#hb{
+    display: none;
+    background-color: rgba(5, 38, 89, 0.95); 
+    position: fixed;
+    top: 0;
+    right: 0;         
+    height: 100vh;    
+    width: 250px;     
+    z-index: 1000;    
+    padding: 20px;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.5); 
+
+
+
+}
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0 0;
+}
+
+.nav-list li {
+    margin-bottom: 15px;
+}
+
+.nav-list a {
+    color: #ffffff;
+    text-decoration: none; /* Retire le soulignement bleu */
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 18px;
+    display: block;
+    padding: 10px;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+.nav-list a:hover {
+    background-color: #1890ff; /* Bleu clair au survol */
+    padding-left: 20px; /* Petit décalage élégant */
+    border-radius: 4px;
+}
+
+#header-actions2{
+    visibility: hidden;
+}
+
 
 /* ---------- HERO SECTION ---------- */
 .hero {
@@ -203,7 +271,7 @@ button:hover {
     margin-bottom: 20px;
 }
 .hero{
-    background-image: url(images/banniere.png);
+    background-image: url("images/banniere.png");
     background-size: cover;
     background-position: center;
 }
@@ -261,4 +329,9 @@ button:hover {
     .hero-content h1 { font-size: 2.8rem; }
     .newsletter input { width: 100%; margin-bottom: 20px; }
     .header { padding: 15px 5%; }
+    #menicon1 {display: block;}
+    .iconhamber1{display: block;}
+    
+    
+
 }
