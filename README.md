@@ -54,7 +54,7 @@ ecommerce/
 
 - Dev 1 → index.html (page d’accueil) Dan
 - Dev 2 → products.html (liste des produits) Leader
-- Dev 3 → cart.html (panier) Enock
+- Dev 3 → cart.html (panier) Enock 
 - Dev 4 → style.css (design) HEnock logos
 - Dev 5 → products.js (gestion des produits) Caleb
 - Dev 6 → cart.js (logique du panier) Josias
