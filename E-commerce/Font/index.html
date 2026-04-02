@@ -46,13 +46,27 @@
     </nav>
 
     <div class="header-icons">
-        <span>🔍</span>
-        <span>🛒</span>
+      <span  id="header-actions2" > <input type="text" placeholder="Rechercher..."> </span>
+        <span id ="resh">🔍</span>
+        <span id="paniers" onclick="pagepanier()">🛒</span>
         <span>👤</span>
-        <span>
+         
+     
+    </div>
+    <div class="iconhamber1">
+       <span >
         <img class="menu-icon" id="menicon1" onclick="humberger()" src="images/12+ Burger Menu Icon White Png.jpg">
-        <img class="menu-icon" id="menicon2" onclick="humberger()" src="images/Sans titre.jpg">
-        </span>
+
+       </span>
+    </div>
+    <div id="hb">
+      <span class="iconhamber"> <img class="menu-icon" id="menicon2" onclick="humberger()" src="images/Sans titre.jpg"></span>
+        <ul class="nav-list" id="nav-list">
+            <li><a href="html/index.html">Accueil</a></li>
+            <li><a href="html/produit.html ">Produits</a></li>
+            <li><a href=" html/cart.html">panier</a></li>
+            <li><a href=" html/cart.html">Contact</a></li>
+    </div>
 
 
 </header>
@@ -162,21 +176,62 @@
 
 </body>
 </html>
+
 <script >
   function humberger(){
    let icone1 = document.getElementById("menicon1"); 
     let icone2 = document.getElementById("menicon2"); 
+    let menu = document.getElementById("hb");
 
     
     
     if (icone1.style.display !== "none") {
         icone1.style.display = "none";
         icone2.style.display = "block";
+        hb.style.display="block"
     } else {
         
         icone1.style.display = "block";
         icone2.style.display = "none";
+        hb.style.display="none";
     }
 }
+
+function pagepanier(){
+  window.location.href ="html/cart.html"  ;
+}
+
+function ovee(){
+  let resh = document.getElementById('header-actions2');
+  let resh2 = document.getElementById('resh');
+
+  resh.style.display="block";
+}
+
+
+    const icon = document.getElementById('resh');
+    const bar = document.getElementById('header-actions2');
+
+    // Apparition au survol de l'icône
+    icon.addEventListener('mouseenter', () => {
+        bar.style.visibility = 'visible';
+    });
+
+    // Disparition quand la souris quitte l'icône
+    icon.addEventListener('mouseleave', () => {
+        bar.style.visibility = 'hidden';
+    });
+
+    // Optionnel : Garder la barre affichée si on survole la barre elle-même
+    bar.addEventListener('mouseenter', () => {
+        bar.style.visibility = 'visible';
+    });
+    bar.addEventListener('mouseleave', () => {
+        bar.style.visibility = 'hidden';
+    });
+
+
+
+
 
 </script>
