@@ -1,0 +1,195 @@
+*{
+    background: #000;
+}
+.cart-page {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* 2/3 pour les produits, 1/3 pour le résumé */
+    gap: 40px;
+    padding: 60px 8%;
+    min-height: 80vh;
+    align-items: start;
+}
+
+/* ---------- SECTION PRODUITS ---------- */
+.cart-items {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: 30px;
+    border: 1px solid var(--border);
+}
+
+.cart-items h2 {
+    font-family: 'Syne', sans-serif;
+    color: var(--white);
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+/* Image du produit */
+.cart-image img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 1px solid var(--border);
+}
+
+/* Détails (Nom, Prix, Quantité) */
+.cart-details {
+    flex: 2;
+}
+
+.cart-details h3 {
+    color: var(--white);
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.cart-details .price {
+    color: var(--accent-light);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+/* Contrôle de quantité */
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: var(--bg-deep);
+    width: fit-content;
+    padding: 5px 15px;
+    border-radius: 50px;
+    border: 1px solid var(--border);
+}
+
+.quantity-control button {
+    background: transparent;
+    border: none;
+    color: var(--accent-light);
+    font-size: 1.2rem;
+    padding: 0;
+    width: 20px;
+    box-shadow: none;
+}
+
+.quantity-control button:hover {
+    color: var(--white);
+    transform: none;
+}
+
+.quantity {
+    font-weight: 700;
+    color: var(--white);
+}
+
+/* Total et Suppression */
+.cart-total p {
+    font-weight: 700;
+    color: var(--white);
+    min-width: 80px;
+}
+
+.remove-btn {
+    background: rgba(255, 50, 50, 0.1);
+    color: #ff4d4d;
+    border: 1px solid rgba(255, 50, 50, 0.2);
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: var(--transition);
+    box-shadow: none;
+}
+
+.remove-btn:hover {
+    background: #ff4d4d;
+    color: white;
+}
+
+/* ---------- RÉSUMÉ DE COMMANDE ---------- */
+.cart-summary {
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    padding: 30px;
+    border-radius: 30px;
+    border: 1px solid var(--accent);
+    position: sticky;
+    top: 120px;
+}
+
+.cart-summary h2 {
+    font-family: 'Syne', sans-serif;
+    color: var(--white);
+    margin-bottom: 25px;
+}
+
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    color: var(--accent-light);
+    font-size: 0.95rem;
+}
+
+.summary-line.total {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    color: var(--white);
+    font-size: 1.3rem;
+    font-weight: 800;
+}
+
+.checkout-btn {
+    width: 100%;
+    margin-top: 25px;
+    padding: 18px;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 992px) {
+    .cart-page {
+        grid-template-columns: 1fr; /* Empile les sections sur tablette/mobile */
+    }
+    
+    .cart-summary {
+        position: static;
+    }
+
+    .cart-item {
+        flex-wrap: wrap;
+    }
+    
+    .cart-total {
+        width: 100%;
+        text-align: right;
+        order: 3;
+    }
+}
+
+@media (max-width: 480px) {
+    .cart-page {
+        padding: 30px 5%;
+    }
+    
+    .cart-image img {
+        width: 70px;
+        height: 70px;
+    }
+}

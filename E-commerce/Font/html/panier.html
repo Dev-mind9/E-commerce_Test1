@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panier | ShopElite</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <style>
+        /* ============================================
+   SHOPELITE - PANIER STYLE (CLEAN & MINIMAL)
+   ============================================ */
+
+:root {
+    --primary: #2563eb;       /* Bleu moderne */
+    --primary-hover: #1d4ed8;
+    --bg-body: #f8fafc;       /* Gris très clair */
+    --bg-card: #ffffff;
+    --text-main: #0f172a;     /* Presque noir */
+    --text-muted: #64748b;    /* Gris texte */
+    --border: #e2e8f0;
+    --danger: #ef4444;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    --radius: 12px;
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    line-height: 1.5;
+}
+
+header {
+    background: var(--bg-card);
+    padding: 2rem 8%;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin: 0;
+}
+
+/* ---------- LAYOUT PRINCIPAL ---------- */
+.cart-page-container { /* Encapsulez votre <section class="cart"> et <section class="summary"> dans une div avec cette classe si possible */
+    max-width: 1200px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+    gap: 30px;
+    padding: 0 5%;
+}
+
+/* ---------- SECTION PRODUITS ---------- */
+.cart {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    background: #f1f5f9;
+}
+
+.cart-details {
+    flex: 1;
+}
+
+.cart-details h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+}
+
+.cart-details p {
+    color: var(--primary);
+    font-weight: 700;
+    margin: 0 0 15px 0;
+}
+
+/* Contrôles de quantité */
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #f1f5f9;
+    width: fit-content;
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+.quantity-control button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--text-main);
+    padding: 0 5px;
+    transition: color 0.2s;
+}
+
+.quantity-control button:hover {
+    color: var(--primary);
+}
+
+.quantity-control span {
+    font-weight: 700;
+    min-width: 20px;
+    text-align: center;
+}
+
+/* Bouton supprimer */
+.remove {
+    background: #fef2f2;
+    color: var(--danger);
+    border: 1px solid #fee2e2;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.remove:hover {
+    background: var(--danger);
+    color: white;
+}
+
+/* ---------- SECTION RÉSUMÉ ---------- */
+.summary {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 30px;
+    height: fit-content;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    position: sticky;
+    top: 20px;
+}
+
+.summary h2 {
+    margin-top: 0;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+}
+
+.summary p {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-muted);
+    margin: 10px 0;
+}
+
+.summary h3 {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid var(--bg-body);
+    font-size: 1.3rem;
+}
+
+/* Bouton commander */
+.checkout {
+    width: 100%;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.checkout:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+    .cart-page-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .summary {
+        position: static;
+    }
+}
+
+@media (max-width: 500px) {
+    .cart-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .quantity-control {
+        margin: 0 auto;
+    }
+}
+    </style>
+
+<header>
+    <h1>Votre Panier</h1>
+</header>
+
+<section class="cart">
+
+    <!-- ITEM -->
+    <div class="cart-item">
+
+        <img src="images/product1.jpg" alt="">
+
+        <div class="cart-details">
+            <h3>Chaussures modernes</h3>
+            <p>Prix : $50</p>
+
+            <div class="quantity-control">
+                <button>-</button>
+                <span>1</span>
+                <button>+</button>
+            </div>
+        </div>
+
+        <div class="cart-actions">
+            <button class="remove">Supprimer</button>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SUMMARY -->
+<section class="summary">
+
+    <h2>Résumé</h2>
+
+    <p>Sous-total : $50</p>
+    <p>Livraison : $5</p>
+    <h3>Total : $55</h3>
+
+    <button class="checkout">Commander</button>
+
+</section>
+
+</body>
+</html>
