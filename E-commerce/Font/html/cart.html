@@ -4,92 +4,156 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panier | ShopElite</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../Style/style.css">
 </head>
-
 <body>
+  <div class="page-shell">
+    <header class="header">
+      <div class="brand">
+        <a href="../index.html">ShopElite</a>
+        <span class="brand-tag">Panier premium</span>
+      </div>
+      <nav class="nav">
+        <a href="../index.html">Accueil</a>
+        <a href="produit.html">Produits</a>
+        <a href="cart.html" aria-current="page">Panier</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-button" type="button" onclick="location.href='produit.html'" aria-label="Retour aux produits"><i class="fa-solid fa-arrow-left"></i></button>
+        <button class="icon-button menu-button" type="button" id="navToggle" aria-label="Ouvrir le menu"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </header>
 
-<!-- 🔝 HEADER -->
-<header class="header">
-    <div class="logo">🛒 ShopElite</div>
-
-    <nav class="nav">
-        <a href="index.html">Accueil</a>
-        <a href="products.html">Produits</a>
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-header">
+        <span>Menu</span>
+        <button class="icon-button" type="button" onclick="toggleMenu()" aria-label="Fermer le menu"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <nav class="mobile-nav">
+        <a href="../index.html">Accueil</a>
+        <a href="produit.html">Produits</a>
         <a href="cart.html">Panier</a>
-    </nav>
-</header>
+      </nav>
+    </div>
 
-<!-- 🛒 CONTENU PRINCIPAL -->
-<main class="cart-page">
+    <main class="cart-page">
+      <section class="cart-items fade-in-up">
+        <div class="page-header">
+          <div>
+            <span>Votre panier</span>
+            <h2>Prêt à finaliser votre commande ?</h2>
+          </div>
+          <p>Révisez vos articles et ajustez les quantités avant le paiement.</p>
+        </div>
 
-    <!-- 🧾 LISTE DES PRODUITS -->
-    <section class="cart-items">
-
-        <h2>Votre Panier</h2>
-
-        <!-- ITEM -->
         <div class="cart-item">
-
-            <div class="cart-image">
-                <img src="images/product1.jpg" alt="Produit">
+          <div class="cart-image">
+            <img src="../images/IPHONE.png" alt="iPhone 14 Pro Max">
+          </div>
+          <div class="cart-details">
+            <h3>iPhone 14 Pro Max</h3>
+            <p class="product-meta">Quantité premium</p>
+            <p class="price">790$</p>
+            <div class="quantity-control">
+              <button class="quantity-btn decrease">-</button>
+              <span class="quantity">1</span>
+              <button class="quantity-btn increase">+</button>
             </div>
-
-            <div class="cart-details">
-                <h3>Chaussures modernes</h3>
-                <p class="price">$50</p>
-
-                <div class="quantity-control">
-                    <button class="decrease">-</button>
-                    <span class="quantity">1</span>
-                    <button class="increase">+</button>
-                </div>
-            </div>
-
-            <div class="cart-total">
-                <p>Total : $50</p>
-            </div>
-
-            <div class="cart-remove">
-                <button class="remove-btn">❌</button>
-            </div>
-
+          </div>
+          <div class="cart-total">
+            <p>Total</p>
+            <strong>$790</strong>
+          </div>
+          <button class="remove-btn" type="button" aria-label="Supprimer l'article">❌</button>
         </div>
 
-        <!-- DUPLIQUE POUR PLUS DE PRODUITS -->
+        <div class="cart-item">
+          <div class="cart-image">
+            <img src="../images/MOTRE.png" alt="Montre Versace">
+          </div>
+          <div class="cart-details">
+            <h3>Montre Versace</h3>
+            <p class="product-meta">Style de haute qualité</p>
+            <p class="price">139$</p>
+            <div class="quantity-control">
+              <button class="quantity-btn decrease">-</button>
+              <span class="quantity">1</span>
+              <button class="quantity-btn increase">+</button>
+            </div>
+          </div>
+          <div class="cart-total">
+            <p>Total</p>
+            <strong>$139</strong>
+          </div>
+          <button class="remove-btn" type="button" aria-label="Supprimer l'article">❌</button>
+        </div>
+      </section>
 
-    </section>
-
-    <!-- 💰 RÉSUMÉ -->
-    <aside class="cart-summary">
-
-        <h2>Résumé</h2>
-
+      <aside class="cart-summary fade-in-up">
+        <h2>Résumé de la commande</h2>
         <div class="summary-line">
-            <span>Sous-total</span>
-            <span>$50</span>
+          <span>Sous-total</span>
+          <span class="subtotal">$929</span>
         </div>
-
         <div class="summary-line">
-            <span>Livraison</span>
-            <span>$5</span>
+          <span>Livraison</span>
+          <span>$15</span>
         </div>
-
         <div class="summary-line total">
-            <span>Total</span>
-            <span>$55</span>
+          <span>Total</span>
+          <span class="grand-total">$944</span>
         </div>
+        <button class="checkout-btn btn btn-primary" type="button">Passer à la caisse</button>
+      </aside>
+    </main>
+  </div>
 
-        <button class="checkout-btn">Passer la commande</button>
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
 
-    </aside>
+    function toggleMenu() {
+      mobileMenu.classList.toggle('open');
+    }
 
-</main>
+    navToggle.addEventListener('click', toggleMenu);
 
-<!-- 📬 FOOTER -->
-<footer class="footer">
-    <p>© 2026 ShopElite - Tous droits réservés</p>
-</footer>
+    function updateCartSummary() {
+      const items = document.querySelectorAll('.cart-item');
+      let subtotal = 0;
+      items.forEach(item => {
+        const price = parseFloat(item.querySelector('.price').textContent.replace('$', ''));
+        const qty = parseInt(item.querySelector('.quantity').textContent, 10);
+        subtotal += price * qty;
+        item.querySelector('.cart-total strong').textContent = '$' + (price * qty).toFixed(2);
+      });
+      document.querySelector('.subtotal').textContent = '$' + subtotal.toFixed(2);
+      document.querySelector('.grand-total').textContent = '$' + (subtotal + 15).toFixed(2);
+    }
 
+    document.querySelectorAll('.quantity-btn').forEach(button => {
+      button.addEventListener('click', event => {
+        const container = event.target.closest('.cart-item');
+        const quantityEl = container.querySelector('.quantity');
+        let quantity = parseInt(quantityEl.textContent, 10);
+        quantity = event.target.classList.contains('increase') ? quantity + 1 : Math.max(1, quantity - 1);
+        quantityEl.textContent = quantity;
+        updateCartSummary();
+      });
+    });
+
+    document.querySelectorAll('.remove-btn').forEach(button => {
+      button.addEventListener('click', event => {
+        event.target.closest('.cart-item').remove();
+        updateCartSummary();
+      });
+    });
+
+    updateCartSummary();
+  </script>
 </body>
 </html>

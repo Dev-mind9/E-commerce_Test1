@@ -4,88 +4,163 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produits | ShopElite</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../Style/style.css">
 </head>
-
 <body>
-
-<!-- HEADER -->
-<header class="header">
-    <div class="logo">ShopElite</div>
-
-    <nav class="nav">
-        <a href="index.html">Accueil</a>
-        <a href="products.html">Produits</a>
+  <div class="page-shell">
+    <header class="header">
+      <div class="brand">
+        <a href="../index.html">ShopElite</a>
+        <span class="brand-tag">Explorez la sélection premium</span>
+      </div>
+      <nav class="nav">
+        <a href="../index.html">Accueil</a>
+        <a href="produit.html" aria-current="page">Produits</a>
         <a href="cart.html">Panier</a>
-    </nav>
-
-    <div class="header-actions">
-        <input type="text" placeholder="Rechercher...">
-        <span class="cart-count">0</span>
-    </div>
-</header>
-
-<!-- FILTRES -->
-<section class="filters">
-    <h2>Filtres</h2>
-
-    <div class="filter-group">
-        <label>Catégorie</label>
-        <select>
-            <option>Toutes</option>
-            <option>Chaussures</option>
-            <option>Vêtements</option>
-        </select>
-    </div>
-
-    <div class="filter-group">
-        <label>Prix</label>
-        <select>
-            <option>Tous</option>
-            <option>0 - 50$</option>
-            <option>50$ - 100$</option>
-        </select>
-    </div>
-</section>
-
-<!-- PRODUITS -->
-<section class="products">
-
-    <h2>Nos Produits</h2>
-
-    <div class="products-grid">
-
-        <!-- PRODUCT CARD -->
-        <div class="product-card">
-
-            <div class="product-image">
-                <img src="images/product1.jpg" alt="Produit">
-                <span class="badge">-20%</span>
-            </div>
-
-            <div class="product-body">
-                <h3>Chaussures modernes</h3>
-                <p class="description">Confort et style pour tous les jours</p>
-
-                <div class="price">
-                    <span class="current">$50</span>
-                    <span class="old">$70</span>
-                </div>
-
-                <div class="actions">
-                    <button class="btn-cart">Ajouter au panier</button>
-                    <button class="btn-view">Voir</button>
-                </div>
-
-            </div>
-
+      </nav>
+      <div class="header-actions">
+        <div class="search-wrap">
+          <input type="search" placeholder="Rechercher un produit" aria-label="Recherche">
+          <button class="search-button" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
+        <button class="icon-button cart-button" type="button" onclick="location.href='cart.html'" aria-label="Voir le panier">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="cart-badge">2</span>
+        </button>
+        <button class="icon-button menu-button" type="button" id="navToggle" aria-label="Ouvrir le menu"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </header>
 
-        <!-- DUPLIQUE POUR PLUS DE PRODUITS -->
-
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-header">
+        <span>Menu</span>
+        <button class="icon-button" type="button" onclick="toggleMenu()" aria-label="Fermer le menu"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <nav class="mobile-nav">
+        <a href="../index.html">Accueil</a>
+        <a href="produit.html">Produits</a>
+        <a href="cart.html">Panier</a>
+      </nav>
     </div>
 
-</section>
+    <main>
+      <section class="page-hero">
+        <div class="hero-copy fade-in-up">
+          <span class="eyebrow">Nouveautés</span>
+          <h1>Découvrez les produits les plus stylés du moment.</h1>
+          <p>Une sélection haut de gamme, des visuels soignés et une navigation fluide pour votre boutique.</p>
+          <div class="hero-actions">
+            <a href="#products" class="btn btn-primary">Voir la collection</a>
+            <a href="#filters" class="btn btn-secondary">Filtrer</a>
+          </div>
+        </div>
+      </section>
 
+      <section class="filters fade-in-up" id="filters">
+        <div class="filters-header">
+          <h2>Filtres</h2>
+          <p>Affinez votre recherche en un clic.</p>
+        </div>
+        <div class="filter-grid">
+          <div class="filter-group">
+            <label>Catégorie</label>
+            <select>
+              <option>Toutes</option>
+              <option>Smartphones</option>
+              <option>Montres</option>
+              <option>Vêtements</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>Prix</label>
+            <select>
+              <option>Tous</option>
+              <option>0 - 50$</option>
+              <option>50 - 100$</option>
+              <option>100 - 500$</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>Popularité</label>
+            <select>
+              <option>Meilleures ventes</option>
+              <option>Plus récents</option>
+              <option>Prix croissant</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <section class="products" id="products">
+        <div class="section-head fade-in-up">
+          <span>Top sélection</span>
+          <h2>Nos produits premium</h2>
+        </div>
+        <div class="product-grid">
+          <article class="product-card fade-in-up" style="animation-delay: 0.1s;">
+            <div class="product-image">
+              <img src="../images/IPHONE.png" alt="iPhone 14 Pro Max">
+              <span class="badge">Best-seller</span>
+            </div>
+            <div class="product-body">
+              <h3>iPhone 14 Pro Max</h3>
+              <p class="description">Design raffiné, performance exceptionnelle et finition premium.</p>
+              <div class="price-row">
+                <span class="product-price">790$</span>
+                <button class="btn btn-outline" type="button" onclick="addToCart('iPhone 14 Pro Max')">Ajouter</button>
+              </div>
+            </div>
+          </article>
+          <article class="product-card fade-in-up" style="animation-delay: 0.2s;">
+            <div class="product-image">
+              <img src="../images/MOTRE.png" alt="Montre Versace">
+              <span class="badge">Nouveauté</span>
+            </div>
+            <div class="product-body">
+              <h3>Montre Versace</h3>
+              <p class="description">Un accessoire luxueux qui donne du caractère à chaque tenue.</p>
+              <div class="price-row">
+                <span class="product-price">139$</span>
+                <button class="btn btn-outline" type="button" onclick="addToCart('Montre Versace')">Ajouter</button>
+              </div>
+            </div>
+          </article>
+          <article class="product-card fade-in-up" style="animation-delay: 0.3s;">
+            <div class="product-image">
+              <img src="../images/POLO.png" alt="Polo premium">
+              <span class="badge">Édition limitée</span>
+            </div>
+            <div class="product-body">
+              <h3>Polo premium</h3>
+              <p class="description">Coupe soignée, tissu doux et look chic instantané.</p>
+              <div class="price-row">
+                <span class="product-price">35$</span>
+                <button class="btn btn-outline" type="button" onclick="addToCart('Polo premium')">Ajouter</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    function toggleMenu() {
+      mobileMenu.classList.toggle('open');
+    }
+
+    navToggle.addEventListener('click', toggleMenu);
+
+    function addToCart(product) {
+      alert(product + ' ajouté au panier.');
+    }
+  </script>
 </body>
 </html>

@@ -1,129 +1,206 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Commerce</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopElite | Boutique premium</title>
+  <link rel="stylesheet" href="Style/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-
 <body>
+  <div class="page-shell">
+    <header class="header">
+      <div class="brand">
+        <a href="index.html">ShopElite</a>
+        <span class="brand-tag">Design premium & expérience fluide</span>
+      </div>
 
-<!-- 🔝 HEADER -->
-<header class="header">
-    <div class="logo">🛒 ShopElite</div>
+      <nav class="nav">
+        <a href="index.html">Accueil</a>
+        <a href="html/produit.html">Produits</a>
+        <a href="html/cart.html">Panier</a>
+        <a href="#contact">Contact</a>
+      </nav>
 
-    <nav class="navbar">
-        <a href="#">Accueil</a>
-        <a href="products.html">Produits</a>
-        <a href="#">Catégories</a>
-        <a href="#">Contact</a>
-    </nav>
+      <div class="header-actions">
+        <div class="search-wrap">
+          <input type="search" placeholder="Rechercher des produits" aria-label="Recherche">
+          <button class="search-button" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <button class="icon-button" type="button" onclick="openCart()" aria-label="Voir le panier">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="cart-badge">3</span>
+        </button>
+        <button class="icon-button menu-button" type="button" id="navToggle" aria-label="Ouvrir le menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </header>
 
-    <div class="header-icons">
-        <span>🔍</span>
-        <span>🛒</span>
-        <span>👤</span>
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-header">
+        <span>Menu</span>
+        <button class="icon-button" type="button" onclick="toggleMenu()" aria-label="Fermer le menu"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <nav class="mobile-nav">
+        <a href="index.html">Accueil</a>
+        <a href="html/produit.html">Produits</a>
+        <a href="html/cart.html">Panier</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
-</header>
 
-<!-- 🎯 HERO SECTION -->
-<section class="hero">
-    <div class="hero-content">
-        <h1>Découvrez les meilleures offres</h1>
-        <p>Des produits de qualité à des prix imbattables</p>
-        <button>Voir les produits</button>
-    </div>
-</section>
-
-<!-- ⭐ FEATURES -->
-<section class="features">
-    <div class="feature">
-        <h3>🚚 Livraison rapide</h3>
-        <p>Recevez vos produits en un temps record</p>
-    </div>
-
-    <div class="feature">
-        <h3>💳 Paiement sécurisé</h3>
-        <p>Vos transactions sont 100% sécurisées</p>
-    </div>
-
-    <div class="feature">
-        <h3>📦 Produits de qualité</h3>
-        <p>Nous sélectionnons les meilleurs produits</p>
-    </div>
-</section>
-
-<!-- 🛍️ PRODUITS POPULAIRES -->
-<section class="products">
-    <h2>Produits populaires</h2>
-
-    <div class="product-container">
-
-        <div class="product-card">
-            <img src="images/product1.jpg" alt="Produit">
-            <h3>Chaussures</h3>
-            <p>50$</p>
-            <button>Ajouter au panier</button>
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">Nouveauté 2026</span>
+          <h1>Une boutique en ligne premium<br>qui attire et convertit.</h1>
+          <p>Design moderne, produits triés sur le volet et une expérience d'achat fluide sur tous les écrans.</p>
+          <div class="hero-actions">
+            <a href="html/produit.html" class="btn btn-primary">Voir la collection</a>
+            <a href="#features" class="btn btn-secondary">Découvrir</a>
+          </div>
+          <div class="hero-stats">
+            <div><strong>120+</strong><span>produits premium</span></div>
+            <div><strong>Livraison</strong><span>Express 24h</span></div>
+            <div><strong>Support</strong><span>24/7 client</span></div>
+          </div>
         </div>
 
-        <div class="product-card">
-            <img src="images/product2.jpg" alt="Produit">
-            <h3>T-shirt</h3>
-            <p>20$</p>
-            <button>Ajouter au panier</button>
+        <div class="hero-visual">
+          <div class="hero-card">
+            <div class="product-badge">Best-seller</div>
+            <img src="images/IPHONE.png" alt="iPhone 14 Pro Max">
+            <div class="product-card-body">
+              <h2>iPhone 14 Pro Max</h2>
+              <p>Puissance, élégance et finition premium pour tous vos usages.</p>
+              <div class="price-row">
+                <span class="price">790$</span>
+                <button class="btn btn-primary small" type="button" onclick="addToCart('iPhone 14 Pro Max')">Ajouter</button>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <div class="product-card">
-            <img src="images/product3.jpg" alt="Produit">
-            <h3>Montre</h3>
-            <p>100$</p>
-            <button>Ajouter au panier</button>
+      <section class="features" id="features">
+        <div class="section-head">
+          <span>Services premium</span>
+          <h2>Une expérience pensée pour vos clients</h2>
         </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <i class="fa-solid fa-shield-halved"></i>
+            <h3>Paiement sécurisé</h3>
+            <p>Transactions protégées avec un design de confiance.</p>
+          </article>
+          <article class="feature-card">
+            <i class="fa-solid fa-truck-fast"></i>
+            <h3>Livraison express</h3>
+            <p>Emballage soigné, expédition rapide et suivi clair.</p>
+          </article>
+          <article class="feature-card">
+            <i class="fa-solid fa-star"></i>
+            <h3>Sélection premium</h3>
+            <p>Des produits avec un style confirmé et une présentation haut de gamme.</p>
+          </article>
+        </div>
+      </section>
 
-    </div>
-</section>
+      <section class="products">
+        <div class="section-head">
+          <span>Top sélection</span>
+          <h2>Produits populaires</h2>
+        </div>
+        <div class="product-grid">
+          <article class="product-card">
+            <img src="images/IPHONE.png" alt="iPhone 14 Pro Max">
+            <h3>iPhone 14 Pro Max</h3>
+            <p class="product-price">790$</p>
+            <button class="btn btn-outline" type="button" onclick="addToCart('iPhone 14 Pro Max')">Ajouter au panier</button>
+          </article>
+          <article class="product-card">
+            <img src="images/MOTRE.png" alt="Montre Versace">
+            <h3>Montre Versace</h3>
+            <p class="product-price">139$</p>
+            <button class="btn btn-outline" type="button" onclick="addToCart('Montre Versace')">Ajouter au panier</button>
+          </article>
+          <article class="product-card">
+            <img src="images/POLO.png" alt="Polo premium">
+            <h3>Polo premium</h3>
+            <p class="product-price">35$</p>
+            <button class="btn btn-outline" type="button" onclick="addToCart('Polo premium')">Ajouter au panier</button>
+          </article>
+        </div>
+      </section>
 
-<!-- 📢 BANNIÈRE PROMO -->
-<section class="promo">
-    <h2>🔥 Promotion spéciale -50%</h2>
-    <p>Ne ratez pas cette offre limitée</p>
-    <button>Acheter maintenant</button>
-</section>
+      <section class="promo">
+        <div>
+          <span>Offre limitée</span>
+          <h2>-50% sur une sélection exclusive</h2>
+          <p>Profitez d'une expérience haut de gamme avec des rabais spécialement choisis pour vous.</p>
+        </div>
+        <a href="html/produit.html" class="btn btn-primary">Profiter de l'offre</a>
+      </section>
 
-<!-- 📬 NEWSLETTER -->
-<section class="newsletter">
-    <h2>Abonnez-vous</h2>
-    <p>Recevez nos meilleures offres</p>
-    
-    <form>
-        <input type="email" placeholder="Votre email">
-        <button>S'inscrire</button>
-    </form>
-</section>
+      <section class="newsletter" id="contact">
+        <div class="newsletter-content">
+          <div>
+            <span>Newsletter</span>
+            <h2>Abonnez-vous pour recevoir les meilleures offres</h2>
+          </div>
+          <form class="newsletter-form" action="#" method="post">
+            <input type="email" placeholder="Votre adresse email" aria-label="Email" required>
+            <button class="btn btn-primary" type="submit">S'inscrire</button>
+          </form>
+        </div>
+      </section>
+    </main>
 
-<!-- 📞 FOOTER -->
-<footer class="footer">
-
-    <div class="footer-section">
+    <footer class="footer">
+      <div class="footer-col">
         <h3>ShopElite</h3>
-        <p>Votre boutique en ligne de confiance</p>
-    </div>
+        <p>Une boutique élégante et premium pour mettre en valeur vos produits.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <a href="index.html">Accueil</a>
+        <a href="html/produit.html">Produits</a>
+        <a href="html/cart.html">Panier</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>contact@shopelite.com</p>
+        <p>+243 000 000 000</p>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+      </div>
+    </footer>
+  </div>
 
-    <div class="footer-section">
-        <h3>Liens</h3>
-        <a href="#">Accueil</a>
-        <a href="#">Produits</a>
-        <a href="#">Contact</a>
-    </div>
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
 
-    <div class="footer-section">
-        <h3>Contact</h3>
-        <p>Email: contact@shop.com</p>
-        <p>Tél: +243 000 000 000</p>
-    </div>
+    function toggleMenu() {
+      mobileMenu.classList.toggle('open');
+    }
 
-</footer>
+    navToggle.addEventListener('click', toggleMenu);
 
+    function openCart() {
+      window.location.href = 'html/cart.html';
+    }
+
+    function addToCart(product) {
+      alert(product + ' a été ajouté au panier !');
+    }
+  </script>
 </body>
 </html>
