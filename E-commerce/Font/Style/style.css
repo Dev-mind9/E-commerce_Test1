@@ -1,16 +1,16 @@
 ﻿:root {
-  --bg-900: #050b1e;
-  --bg-800: #0c1b3a;
-  --bg-700: #12254f;
-  --bg-glass: rgba(5, 20, 55, 0.62);
-  --surface: #0d1a36;
-  --surface-strong: #14264c;
-  --accent: #6ba9ff;
-  --accent-soft: #8bc7ff;
-  --text: #e7f5ff;
-  --text-muted: #9bb5d1;
-  --border: rgba(107, 169, 255, 0.16);
-  --shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+  --bg-900: #0a0f1c;
+  --bg-800: #111827;
+  --bg-700: #1f2937;
+  --bg-glass: rgba(15, 23, 42, 0.85);
+  --surface: #1e293b;
+  --surface-strong: #334155;
+  --accent: #06d6a0;
+  --accent-soft: #4ade80;
+  --text: #f1f5f9;
+  --text-muted: #94a3b8;
+  --border: rgba(6, 214, 160, 0.2);
+  --shadow: 0 24px 60px rgba(6, 214, 160, 0.15);
   --radius: 28px;
   --transition: all 0.32s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -29,8 +29,12 @@ body {
   min-height: 100vh;
   font-family: 'DM Sans', sans-serif;
   color: var(--text);
-  background: radial-gradient(circle at top, rgba(107, 169, 255, 0.12), transparent 25%),
+  background-image: url('../images/background-hero.svg'),
+    radial-gradient(circle at top, rgba(107, 169, 255, 0.12), transparent 25%),
     linear-gradient(180deg, #08122b 0%, #050916 45%, #01050d 100%);
+  background-size: cover, cover, cover;
+  background-position: center top, center top, center;
+  background-repeat: no-repeat;
   overflow-x: hidden;
 }
 
