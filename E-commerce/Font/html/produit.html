@@ -2,252 +2,28 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produits | ShopElite</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>ShopElite</title>
+    <link rel="stylesheet" href="../Style/stylePRODUIT.css">
 </head>
-
 <body>
-    
-    <style>
-        /* ============================================
-   SHOPELITE - PRODUITS (BRIGHT & PROFESSIONAL)
-   ============================================ */
 
-:root {
-    --primary: #2563eb;
-    --primary-hover: #1d4ed8;
-    --bg-body: #f8fafc;
-    --white: #ffffff;
-    --text-main: #1e293b;
-    --text-muted: #64748b;
-    --border: #e2e8f0;
-    --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
-    --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.1);
-    --radius: 12px;
-}
-
-body {
-    background-color: var(--bg-body);
-    color: var(--text-main);
-    font-family: 'Inter', system-ui, sans-serif;
-    margin: 0;
-}
-
-/* ---------- HEADER & ACTIONS ---------- */
-.header {
-    background: var(--white);
-    padding: 15px 8%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.logo { font-size: 1.6rem; font-weight: 800; color: var(--primary); }
-
-.nav a {
-    text-decoration: none;
-    color: var(--text-main);
-    margin: 0 15px;
-    font-weight: 500;
-}
-
-.header-actions {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.header-actions input {
-    padding: 8px 15px;
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    background: #f1f5f9;
-}
-
-.cart-count {
-    background: var(--primary);
-    color: white;
-    padding: 4px 10px;
-    border-radius: 50px;
-    font-size: 0.8rem;
-    font-weight: bold;
-}
-
-/* ---------- SECTION FILTRES ---------- */
-.filters {
-    background: var(--white);
-    margin: 30px 8%;
-    padding: 20px 30px;
-    border-radius: var(--radius);
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    box-shadow: var(--shadow-sm);
-}
-
-.filters h2 { font-size: 1.1rem; margin: 0; color: var(--text-muted); }
-
-.filter-group { display: flex; align-items: center; gap: 10px; }
-
-.filter-group label { font-weight: 600; font-size: 0.9rem; }
-
-.filter-group select {
-    padding: 8px 12px;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    background: var(--white);
-    cursor: pointer;
-}
-
-/* ---------- GRILLE DE PRODUITS ---------- */
-.products { padding: 20px 8% 80px; }
-
-.products h2 { 
-    font-size: 1.8rem; 
-    margin-bottom: 30px; 
-    font-weight: 800;
-}
-
-.products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
-}
-
-/* ---------- CARTE PRODUIT ---------- */
-.product-card {
-    background: var(--white);
-    border-radius: var(--radius);
-    overflow: hidden;
-    transition: all 0.3s ease;
-    border: 1px solid var(--border);
-    position: relative;
-}
-
-.product-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-md);
-    border-color: var(--primary);
-}
-
-.product-image {
-    position: relative;
-    height: 250px;
-    background: #f1f5f9;
-    overflow: hidden;
-}
-
-.product-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.product-card:hover .product-image img {
-    transform: scale(1.1);
-}
-
-.badge {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    background: #ef4444;
-    color: white;
-    padding: 5px 12px;
-    border-radius: 50px;
-    font-size: 0.75rem;
-    font-weight: 700;
-}
-
-.product-body { padding: 20px; }
-
-.product-body h3 { 
-    margin: 0 0 10px 0; 
-    font-size: 1.2rem; 
-}
-
-.description {
-    color: var(--text-muted);
-    font-size: 0.9rem;
-    margin-bottom: 20px;
-    display: -webkit-box;
-    
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.price { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
-
-.price .current {
-    font-size: 1.4rem;
-    font-weight: 800;
-    color: var(--primary);
-}
-
-.price .old {
-    color: var(--text-muted);
-    text-decoration: line-through;
-    font-size: 0.95rem;
-}
-
-/* ---------- BOUTONS D'ACTION ---------- */
-.actions { display: flex; gap: 10px; }
-
-.btn-cart {
-    flex: 2;
-    background: var(--primary);
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.btn-cart:hover { background: var(--primary-hover); }
-
-.btn-view {
-    flex: 1;
-    background: #f1f5f9;
-    color: var(--text-main);
-    border: 1px solid var(--border);
-    padding: 12px;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.btn-view:hover { background: var(--border); }
-
-/* ---------- RESPONSIVE ---------- */
-@media (max-width: 768px) {
-    .filters { flex-direction: column; align-items: flex-start; gap: 15px; }
-    .header-actions input { display: none; }
-}
-    </style>
-<!-- HEADER -->
 <header class="header">
-    <div class="logo">ShopElite</div>
+    <h1 class="logo">ShopElite</h1>
 
     <nav class="nav">
-        <a href="index.html">Accueil</a>
-        <a href="products.html">Produits</a>
-        <a href="cart.html">Panier</a>
+        <a href="#">Accueil</a>
+        <a href="#">Produits</a>
+        <a href="#">Panier</a>
     </nav>
 
     <div class="header-actions">
         <input type="text" placeholder="Rechercher...">
+        <button>🔍</button>
         <span class="cart-count">0</span>
     </div>
 </header>
+
+<main>
 
 <!-- FILTRES -->
 <section class="filters">
@@ -274,22 +50,20 @@ body {
 
 <!-- PRODUITS -->
 <section class="products">
-
     <h2>Nos Produits</h2>
 
     <div class="products-grid">
 
-        <!-- PRODUCT CARD -->
+        <!-- PRODUIT 1 -->
         <div class="product-card">
-
             <div class="product-image">
-                <img src="images/product1.jpg" alt="Produit">
+                <img src="https://via.placeholder.com/300" alt="">
                 <span class="badge">-20%</span>
             </div>
 
             <div class="product-body">
                 <h3>Chaussures modernes</h3>
-                <p class="description">Confort et style pour tous les jours</p>
+                <p>Confort et style pour tous les jours</p>
 
                 <div class="price">
                     <span class="current">$50</span>
@@ -300,16 +74,34 @@ body {
                     <button class="btn-cart">Ajouter au panier</button>
                     <button class="btn-view">Voir</button>
                 </div>
-
             </div>
-
         </div>
 
-        <!-- DUPLIQUE POUR PLUS DE PRODUITS -->
+        <!-- PRODUIT 2 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="https://via.placeholder.com/300" alt="">
+            </div>
+
+            <div class="product-body">
+                <h3>T-shirt tendance</h3>
+                <p>Style urbain moderne</p>
+
+                <div class="price">
+                    <span class="current">$30</span>
+                </div>
+
+                <div class="actions">
+                    <button class="btn-cart">Ajouter au panier</button>
+                    <button class="btn-view">Voir</button>
+                </div>
+            </div>
+        </div>
 
     </div>
-
 </section>
+
+</main>
 
 </body>
 </html>
