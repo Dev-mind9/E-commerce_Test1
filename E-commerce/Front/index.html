@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopElite - Boutique en Ligne</title>
+    <meta name="description" content="Découvrez ShopElite, votre boutique en ligne moderne avec des produits de qualité. Livraison rapide et paiement sécurisé.">
+    <link rel="stylesheet" href="Style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>ShopElite</span>
+                </div>
+
+                <nav class="nav">
+                    <a href="#home" class="nav-link active">Accueil</a>
+                    <a href="html/products.html" class="nav-link">Produits</a>
+                    <a href="html/cart.html" class="nav-link">Panier <span id="cart-count" class="cart-count">0</span></a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </nav>
+
+                <div class="header-actions">
+                    <div class="search-box">
+                        <input type="text" id="search-input" placeholder="Rechercher un produit...">
+                        <button id="search-btn"><i class="fas fa-search"></i></button>
+                    </div>
+                    <button class="user-btn"><i class="fas fa-user"></i></button>
+                    <button class="cart-btn" onclick="showCart()">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count-mobile" class="cart-count">0</span>
+                    </button>
+                    <button class="menu-toggle" id="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-content">
+            <a href="#home">Accueil</a>
+            <a href="html/products.html">Produits</a>
+            <a href="html/cart.html">Panier</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Découvrez les <span class="highlight">meilleures</span> offres
+                </h1>
+                <p class="hero-subtitle">
+                    Des produits de qualité à des prix imbattables. Livraison rapide et paiement sécurisé.
+                </p>
+                <div class="hero-buttons">
+                    <a href="html/products.html" class="btn btn-primary">Voir les produits</a>
+                    <a href="#features" class="btn btn-secondary">En savoir plus</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="images/banniere.png" alt="Bannière ShopElite" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Pourquoi nous choisir ?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>Livraison rapide</h3>
+                    <p>Recevez vos produits en 24-48h partout en France</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Paiement sécurisé</h3>
+                    <p>Vos transactions sont 100% sécurisées avec SSL</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Produits de qualité</h3>
+                    <p>Nous sélectionnons rigoureusement chaque produit</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Support 24/7</h3>
+                    <p>Notre équipe est là pour vous aider à tout moment</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <h2 class="section-title">Produits populaires</h2>
+            <div class="products-grid" id="popular-products">
+                <!-- Products will be loaded dynamically -->
+            </div>
+            <div class="view-all">
+                <a href="html/products.html" class="btn btn-primary">Voir tous les produits</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Restez informé</h2>
+                <p>Abonnez-vous à notre newsletter pour recevoir nos meilleures offres</p>
+                <form class="newsletter-form" id="newsletter-form">
+                    <input type="email" placeholder="Votre adresse email" required>
+                    <button type="submit" class="btn btn-primary">S'inscrire</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span>ShopElite</span>
+                    </div>
+                    <p>Votre boutique en ligne de confiance depuis 2024.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens rapides</h3>
+                    <ul>
+                        <li><a href="#home">Accueil</a></li>
+                        <li><a href="html/products.html">Produits</a></li>
+                        <li><a href="html/cart.html">Panier</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Service client</h3>
+                    <ul>
+                        <li><a href="#">Aide & FAQ</a></li>
+                        <li><a href="#">Livraison</a></li>
+                        <li><a href="#">Retours</a></li>
+                        <li><a href="#">CGV</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> contact@shopelite.com</p>
+                    <p><i class="fas fa-phone"></i> +243 000 000 000</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Kinshasa, RDC</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ShopElite. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
+    <main class="container"> 
+    <header>
+      <div class="brand">MaBoutique</div>
+      <nav>
+        <a href="html/produit.html">Produits</a>
+        <a href="html/cart.html">Panier</a>
+      </nav>
+    </header>
+  </main>
+
+    -->
+
+
+
+  
+
+
+<header class="header">
+    <div class="logo">🛒 ShopElite</div>
+
+    <nav class="navbar">
+        <a href="#">Accueil</a>
+        <a href="html/produit.html">Produits</a>
+        <a href="html/cart.html">panier</a>
+        <a href="html/cart.html">Contact</a>
+    </nav>
+
+    <div class="header-icons">
+      <span  id="header-actions2" > <input type="text" placeholder="Rechercher..."> </span>
+        <span id ="resh">🔍</span>
+        <span id="paniers" onclick="pagepanier()">🛒</span>
+        <span>👤</span>
+         
+     
+    </div>
+    <div class="iconhamber1">
+       <span >
+        <img class="menu-icon" id="menicon1" onclick="humberger()" src="images/12+ Burger Menu Icon White Png.jpg">
+
+       </span>
+    </div>
+    <div id="hb">
+      <span class="iconhamber"> <img class="menu-icon" id="menicon2" onclick="humberger()" src="images/Sans titre.jpg"></span>
+        <ul class="nav-list" id="nav-list">
+            <li><a href="html/index.html">Accueil</a></li>
+            <li><a href="html/produit.html ">Produits</a></li>
+            <li><a href=" html/cart.html">panier</a></li>
+            <li><a href=" html/cart.html">Contact</a></li>
+    </div>
+
+
+</header>
+
+<!-- 🎯 HERO SECTION -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Découvrez les meilleures offres</h1>
+        <p>Des produits de qualité à des prix imbattables</p>
+        <button>Voir les produits</button>
+    </div>
+</section>
+
+<!-- ⭐ FEATURES -->
+<section class="features">
+    <div class="feature">
+        <h3>🚚 Livraison rapide</h3>
+        <p>Recevez vos produits en un temps record</p>
+    </div>
+
+    <div class="feature">
+        <h3> Paiement sécurisé</h3>
+        <p>Vos transactions sont 100% sécurisées</p>
+    </div>
+
+    <div class="feature">
+        <h3>📦 Produits de qualité</h3>
+        <p>Nous sélectionnons les meilleurs produits</p>
+    </div>
+</section>
+
+<!-- 🛍️ PRODUITS POPULAIRES -->
+<section class="products">
+    <h2>Produits populaires</h2>
+
+    <div class="product-container">
+
+        <div class="product-card">
+            <img src="images/IPHONE.png" alt="Produit">
+            <h3>Iphone 14 PRO MAX</h3>
+            <p>790$</p>
+            <button class="btn" id="btn_id" >Ajouter au panier</button>
+        </div>
+
+        <div class="product-card">
+            <img src="images/MOTRE.png" alt="Produit">
+            <h3>Montre versace</h3>
+            <p>13$</p>
+            <button class="btn" id="tbn_id">Ajouter au panier</button>
+        </div>
+
+        <div class="product-card">
+            <img src="images/POLO.png" alt="Produit">
+            <h3>polo</h3>
+            <p>35$</p>
+            <button class="btn" id="btn_id">Ajouter au panier</button>
+        </div>
+
+    </div>
+</section>
+
+<!-- 📢 BANNIÈRE PROMO -->
+<section class="promo">
+    <h2>🔥 Promotion spéciale -50%</h2>
+    <p>Ne ratez pas cette offre limitée</p>
+    <button>Acheter maintenant</button>
+</section>
+
+<!-- 📬 NEWSLETTER -->
+<section class="newsletter">
+    <h2>Abonnez-vous</h2> </BR>
+    <p>Recevez nos meilleures offres</p>
+    
+    <form> <br> <br>
+
+        <input type="email" placeholder="Votre email">
+        <button>S'inscrire</button>
+    </form>
+</section>
+
+<!-- 📞 FOOTER -->
+<footer class="footer">
+
+    <div class="footer-section">
+        <h3>ShopElite</h3>
+        <p>Votre boutique en ligne de confiance</p>
+    </div>
+
+    <div class="footer-section">
+        <h3>Liens</h3>
+        <a href="#">Accueil</a>
+        <a href="#">Produits</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <div class="footer-section">
+        <h3>Contact</h3>
+        <p>Email: contact@shop.com</p>
+        <p>Tél: +243 000 000 000</p>
+    </div>
+
+</footer>
+
+
+    <div class="footer">© 2026 MaBoutique </div>
+  </main>
+
+</body>
+</html>
+
+<script >
+  function humberger(){
+   let icone1 = document.getElementById("menicon1"); 
+    let icone2 = document.getElementById("menicon2"); 
+    let menu = document.getElementById("hb");
+
+    
+    
+    if (icone1.style.display !== "none") {
+        icone1.style.display = "none";
+        icone2.style.display = "block";
+        hb.style.display="block"
+    } else {
+        
+        icone1.style.display = "block";
+        icone2.style.display = "none";
+        hb.style.display="none";
+    }
+}
+
+function pagepanier(){
+  window.location.href ="html/cart.html"  ;
+}
+
+function ovee(){
+  let resh = document.getElementById('header-actions2');
+  let resh2 = document.getElementById('resh');
+
+  resh.style.display="block";
+}
+
+
+    const icon = document.getElementById('resh');
+    const bar = document.getElementById('header-actions2');
+
+    // Apparition au survol de l'icône
+    icon.addEventListener('mouseenter', () => {
+        bar.style.visibility = 'visible';
+    });
+
+    // Disparition quand la souris quitte l'icône
+    icon.addEventListener('mouseleave', () => {
+        bar.style.visibility = 'hidden';
+    });
+
+    // Optionnel : Garder la barre affichée si on survole la barre elle-même
+    bar.addEventListener('mouseenter', () => {
+        bar.style.visibility = 'visible';
+    });
+    bar.addEventListener('mouseleave', () => {
+        bar.style.visibility = 'hidden';
+    });
+
+
+
+
+
+</script>
