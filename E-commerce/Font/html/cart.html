@@ -1,13 +1,344 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Style/style.css">
-    <title>Document</title>
+    <title>Panier | ShopElite</title>
+    <link rel="stylesheet" href="Style/styleCART.css">
 </head>
+
 <body>
-    <h1>Panier</h1>
-    <div id="cart"></div>
+
+  <style>
+    /* ============================================
+   SHOPELITE - PANIER STYLE (CLEAN & BRIGHT)
+   ============================================ */
+
+:root {
+    --primary: #2563eb;       /* Bleu vif moderne */
+    --primary-light: #dbeafe;
+    --text-dark: #1e293b;
+    --text-muted: #64748b;
+    --bg-light: #f8fafc;
+    --white: #ffffff;
+    --border: #e2e8f0;
+    --shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+/* ---------- RESET & BASE ---------- */
+body {
+    margin: 0;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+}
+
+/* ---------- HEADER OPTIMISÉ ---------- */
+.header {
+    background: var(--white);
+    padding: 20px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.nav a {
+    text-decoration: none;
+    color: var(--text-dark);
+    margin-left: 25px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav a:hover {
+    color: var(--primary);
+}
+
+/* ---------- LAYOUT PANIER ---------- */
+.cart-page {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+    gap: 30px;
+    padding: 50px 8%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ---------- LISTE DES PRODUITS ---------- */
+.cart-items {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+.cart-items h2 {
+    margin-top: 0;
+    font-size: 1.8rem;
+    border-bottom: 2px solid var(--bg-light);
+    padding-bottom: 20px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 25px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-image img {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 12px;
+    background: var(--bg-light);
+}
+
+.cart-details {
+    flex: 1;
+}
+
+.cart-details h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.2rem;
+}
+
+.cart-details .price {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+/* Contrôle quantité */
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: var(--bg-light);
+    width: fit-content;
+    padding: 5px 15px;
+    border-radius: 8px;
+}
+
+.quantity-control button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--text-dark);
+    font-weight: bold;
+}
+
+.quantity {
+    font-weight: 700;
+    min-width: 20px;
+    text-align: center;
+}
+
+.cart-total p {
+    font-weight: 800;
+    font-size: 1.1rem;
+}
+
+/* Bouton supprimer */
+.remove-btn {
+    background: #fee2e2;
+    color: #ef4444;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.remove-btn:hover {
+    background: #ef4444;
+    color: white;
+}
+
+/* ---------- RÉSUMÉ DE COMMANDE ---------- */
+.cart-summary {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    height: fit-content;
+    position: sticky;
+    top: 120px;
+}
+
+.cart-summary h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+}
+
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    color: var(--text-muted);
+}
+
+.summary-line.total {
+    border-top: 2px solid var(--bg-light);
+    padding-top: 20px;
+    margin-top: 20px;
+    color: var(--text-dark);
+    font-weight: 800;
+    font-size: 1.4rem;
+}
+
+/* Bouton de commande */
+.checkout-btn {
+    width: 100%;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 18px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
+    margin-top: 20px;
+}
+
+.checkout-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+/* ---------- FOOTER ---------- */
+.footer {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    margin-top: 50px;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 992px) {
+    .cart-page {
+        grid-template-columns: 1fr;
+    }
+    .cart-summary {
+        position: static;
+    }
+}
+
+@media (max-width: 600px) {
+    .cart-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    .quantity-control {
+        margin: 10px auto;
+    }
+}
+  </style>
+
+<!-- 🔝 HEADER -->
+<header class="header">
+    <div class="logo">🛒 ShopElite</div>
+
+    <nav class="nav">
+        <a href="index.html">Accueil</a>
+        <a href="products.html">Produits</a>
+        <a href="cart.html">Panier</a>
+    </nav>
+</header>
+
+<!-- 🛒 CONTENU PRINCIPAL -->
+<main class="cart-page">
+
+    <!-- 🧾 LISTE DES PRODUITS -->
+    <section class="cart-items">
+
+        <h2>Votre Panier</h2>
+
+        <!-- ITEM -->
+        <div class="cart-item">
+
+            <div class="cart-image">
+                <img src="images/MONTRE.jpg" alt="Produit">
+            </div>
+
+            <div class="cart-details">
+                <h3>Montre versace</h3>
+                <p class="price">$13</p>
+
+                <div class="quantity-control">
+                    <button class="decrease">-</button>
+                    <span class="quantity">1</span>
+                    <button class="increase">+</button>
+                </div>
+            </div>
+
+            <div class="cart-total">
+                <p>Total : $50</p>
+            </div>
+
+            <div class="cart-remove">
+                <button class="remove-btn">❌</button>
+            </div>
+
+        </div>
+
+        <!-- DUPLIQUE POUR PLUS DE PRODUITS -->
+
+    </section>
+
+    <!-- 💰 RÉSUMÉ -->
+    <aside class="cart-summary">
+
+        <h2>Résumé</h2>
+
+        <div class="summary-line">
+            <span>Sous-total</span>
+            <span>$50</span>
+        </div>
+
+        <div class="summary-line">
+            <span>Livraison</span>
+            <span>$5</span>
+        </div>
+
+        <div class="summary-line total">
+            <span>Total</span>
+            <span>$55</span>
+        </div>
+
+        <button class="checkout-btn">Passer la commande</button>
+
+    </aside>
+
+</main>
+
+<!-- 📬 FOOTER -->
+<footer class="footer">
+    <p>© 2026 ShopElite - Tous droits réservés</p>
+</footer>
+
 </body>
 </html>
