@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panier - ShopElite</title>
+    <meta name="description" content="Consultez et gérez les articles dans votre panier d'achat. Procédez au paiement en toute sécurité.">
+    <link rel="stylesheet" href="../Style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>ShopElite</span>
+                </div>
+
+                <nav class="nav">
+                    <a href="../index.html" class="nav-link">Accueil</a>
+                    <a href="products.html" class="nav-link">Produits</a>
+                    <a href="cart.html" class="nav-link active">Panier <span id="cart-count" class="cart-count">0</span></a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </nav>
+
+                <div class="header-actions">
+                    <div class="search-box">
+                        <input type="text" id="search-input" placeholder="Rechercher un produit...">
+                        <button id="search-btn"><i class="fas fa-search"></i></button>
+                    </div>
+                    <button class="user-btn"><i class="fas fa-user"></i></button>
+                    <button class="cart-btn" onclick="showCart()">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count-mobile" class="cart-count">0</span>
+                    </button>
+                    <button class="menu-toggle" id="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-content">
+            <a href="../index.html">Accueil</a>
+            <a href="products.html">Produits</a>
+            <a href="cart.html">Panier</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Votre Panier</h1>
+            <p class="page-subtitle">Vérifiez vos articles et procédez au paiement</p>
+        </div>
+    </section>
+
+    <!-- Cart Content -->
+    <section class="cart-section">
+        <div class="container">
+            <div class="cart-layout">
+                <!-- Cart Items -->
+                <div class="cart-items-section">
+                    <div class="cart-items-header">
+                        <h2>Articles dans votre panier</h2>
+                        <span id="cart-items-count" class="items-count">0 article(s)</span>
+                    </div>
+
+                    <div id="cart-items" class="cart-items">
+                        <!-- Cart items will be loaded dynamically -->
+                    </div>
+
+                    <div class="cart-actions">
+                        <a href="products.html" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i>
+                            Continuer mes achats
+                        </a>
+                        <button class="btn btn-outline-danger" onclick="cartManager.clearCart()">
+                            <i class="fas fa-trash"></i>
+                            Vider le panier
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Cart Summary -->
+                <div class="cart-summary-section">
+                    <div id="cart-summary" class="cart-summary">
+                        <!-- Summary will be loaded dynamically -->
+                    </div>
+
+                    <!-- Shipping Info -->
+                    <div class="shipping-info">
+                        <h3>Informations de livraison</h3>
+                        <div class="shipping-options">
+                            <div class="shipping-option">
+                                <input type="radio" id="standard" name="shipping" value="standard" checked>
+                                <label for="standard">
+                                    <div class="shipping-details">
+                                        <span class="shipping-name">Livraison standard</span>
+                                        <span class="shipping-time">2-3 jours ouvrés</span>
+                                        <span class="shipping-price">Gratuite</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="shipping-option">
+                                <input type="radio" id="express" name="shipping" value="express">
+                                <label for="express">
+                                    <div class="shipping-details">
+                                        <span class="shipping-name">Livraison express</span>
+                                        <span class="shipping-time">1 jour ouvré</span>
+                                        <span class="shipping-price">9,90 €</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Promo Code -->
+                    <div class="promo-code">
+                        <h3>Code promo</h3>
+                        <div class="promo-input">
+                            <input type="text" id="promo-code" placeholder="Entrez votre code promo">
+                            <button class="btn btn-outline-primary" onclick="applyPromoCode()">
+                                Appliquer
+                            </button>
+                        </div>
+                        <p class="promo-help">Entrez un code promo valide pour bénéficier d'une réduction</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recently Viewed -->
+    <section class="recently-viewed">
+        <div class="container">
+            <h2 class="section-title">Vous pourriez aussi aimer</h2>
+            <div class="products-grid" id="recommended-products">
+                <!-- Recommended products will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Restez informé</h2>
+                <p>Abonnez-vous à notre newsletter pour recevoir nos meilleures offres</p>
+                <form class="newsletter-form" id="newsletter-form">
+                    <input type="email" placeholder="Votre adresse email" required>
+                    <button type="submit" class="btn btn-primary">S'inscrire</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span>ShopElite</span>
+                    </div>
+                    <p>Votre boutique en ligne de confiance depuis 2024.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens rapides</h3>
+                    <ul>
+                        <li><a href="../index.html">Accueil</a></li>
+                        <li><a href="products.html">Produits</a></li>
+                        <li><a href="cart.html">Panier</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Service client</h3>
+                    <ul>
+                        <li><a href="#">Aide & FAQ</a></li>
+                        <li><a href="#">Livraison</a></li>
+                        <li><a href="#">Retours</a></li>
+                        <li><a href="#">CGV</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> contact@shopelite.com</p>
+                    <p><i class="fas fa-phone"></i> +243 000 000 000</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Kinshasa, RDC</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ShopElite. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/products.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/cart-page.js"></script>
+</body>
+</html>
+
+<body>
+
+  <style>
+    /* ============================================
+   SHOPELITE - PANIER STYLE (CLEAN & BRIGHT)
+   ============================================ */
+
+:root {
+    --primary: #2563eb;       /* Bleu vif moderne */
+    --primary-light: #dbeafe;
+    --text-dark: #1e293b;
+    --text-muted: #64748b;
+    --bg-light: #f8fafc;
+    --white: #ffffff;
+    --border: #e2e8f0;
+    --shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+/* ---------- RESET & BASE ---------- */
+body {
+    margin: 0;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+}
+
+/* ---------- HEADER OPTIMISÉ ---------- */
+.header {
+    background: var(--white);
+    padding: 20px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.nav a {
+    text-decoration: none;
+    color: var(--text-dark);
+    margin-left: 25px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav a:hover {
+    color: var(--primary);
+}
+
+/* ---------- LAYOUT PANIER ---------- */
+.cart-page {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+    gap: 30px;
+    padding: 50px 8%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ---------- LISTE DES PRODUITS ---------- */
+.cart-items {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+.cart-items h2 {
+    margin-top: 0;
+    font-size: 1.8rem;
+    border-bottom: 2px solid var(--bg-light);
+    padding-bottom: 20px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 25px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-image img {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 12px;
+    background: var(--bg-light);
+}
+
+.cart-details {
+    flex: 1;
+}
+
+.cart-details h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.2rem;
+}
+
+.cart-details .price {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+/* Contrôle quantité */
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: var(--bg-light);
+    width: fit-content;
+    padding: 5px 15px;
+    border-radius: 8px;
+}
+
+.quantity-control button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--text-dark);
+    font-weight: bold;
+}
+
+.quantity {
+    font-weight: 700;
+    min-width: 20px;
+    text-align: center;
+}
+
+.cart-total p {
+    font-weight: 800;
+    font-size: 1.1rem;
+}
+
+/* Bouton supprimer */
+.remove-btn {
+    background: #fee2e2;
+    color: #ef4444;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.remove-btn:hover {
+    background: #ef4444;
+    color: white;
+}
+
+/* ---------- RÉSUMÉ DE COMMANDE ---------- */
+.cart-summary {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    height: fit-content;
+    position: sticky;
+    top: 120px;
+}
+
+.cart-summary h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+}
+
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    color: var(--text-muted);
+}
+
+.summary-line.total {
+    border-top: 2px solid var(--bg-light);
+    padding-top: 20px;
+    margin-top: 20px;
+    color: var(--text-dark);
+    font-weight: 800;
+    font-size: 1.4rem;
+}
+
+/* Bouton de commande */
+.checkout-btn {
+    width: 100%;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 18px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
+    margin-top: 20px;
+}
+
+.checkout-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+/* ---------- FOOTER ---------- */
+.footer {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    margin-top: 50px;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 992px) {
+    .cart-page {
+        grid-template-columns: 1fr;
+    }
+    .cart-summary {
+        position: static;
+    }
+}
+
+@media (max-width: 600px) {
+    .cart-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    .quantity-control {
+        margin: 10px auto;
+    }
+}
+  </style>
+
+<!-- 🔝 HEADER -->
+<header class="header">
+    <div class="logo">🛒 ShopElite</div>
+
+    <nav class="nav">
+        <a href="index.html">Accueil</a>
+        <a href="products.html">Produits</a>
+        <a href="cart.html">Panier</a>
+    </nav>
+</header>
+
+<!-- 🛒 CONTENU PRINCIPAL -->
+<main class="cart-page">
+
+    <!-- 🧾 LISTE DES PRODUITS -->
+    <section class="cart-items">
+
+        <h2>Votre Panier</h2>
+
+        <!-- ITEM -->
+        <div class="cart-item">
+
+            <div class="cart-image">
+                <img src="images/MONTRE.jpg" alt="Produit">
+            </div>
+
+            <div class="cart-details">
+                <h3>Montre versace</h3>
+                <p class="price">$13</p>
+
+                <div class="quantity-control">
+                    <button class="decrease">-</button>
+                    <span class="quantity">1</span>
+                    <button class="increase">+</button>
+                </div>
+            </div>
+
+            <div class="cart-total">
+                <p>Total : $50</p>
+            </div>
+
+            <div class="cart-remove">
+                <button class="remove-btn">❌</button>
+            </div>
+
+        </div>
+
+        <!-- DUPLIQUE POUR PLUS DE PRODUITS -->
+
+    </section>
+
+    <!-- 💰 RÉSUMÉ -->
+    <aside class="cart-summary">
+
+        <h2>Résumé</h2>
+
+        <div class="summary-line">
+            <span>Sous-total</span>
+            <span>$50</span>
+        </div>
+
+        <div class="summary-line">
+            <span>Livraison</span>
+            <span>$5</span>
+        </div>
+
+        <div class="summary-line total">
+            <span>Total</span>
+            <span>$55</span>
+        </div>
+
+        <button class="checkout-btn">Passer la commande</button>
+
+    </aside>
+
+</main>
+
+<!-- 📬 FOOTER -->
+<footer class="footer">
+    <p>© 2026 ShopElite - Tous droits réservés</p>
+</footer>
+
+</body>
+</html>

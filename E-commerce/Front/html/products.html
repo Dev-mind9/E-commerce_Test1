@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produits - ShopElite</title>
+    <meta name="description" content="Découvrez notre collection complète de produits de qualité. Téléphones, ordinateurs, audio et plus encore.">
+    <link rel="stylesheet" href="Style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>ShopElite</span>
+                </div>
+
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">Accueil</a>
+                    <a href="html/products.html" class="nav-link active">Produits</a>
+                    <a href="html/cart.html" class="nav-link">Panier <span id="cart-count" class="cart-count">0</span></a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </nav>
+
+                <div class="header-actions">
+                    <div class="search-box">
+                        <input type="text" id="search-input" placeholder="Rechercher un produit...">
+                        <button id="search-btn"><i class="fas fa-search"></i></button>
+                    </div>
+                    <button class="user-btn"><i class="fas fa-user"></i></button>
+                    <button class="cart-btn" onclick="showCart()">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count-mobile" class="cart-count">0</span>
+                    </button>
+                    <button class="menu-toggle" id="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-content">
+            <a href="index.html">Accueil</a>
+            <a href="html/products.html">Produits</a>
+            <a href="html/cart.html">Panier</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Nos Produits</h1>
+            <p class="page-subtitle">Découvrez notre sélection de produits de qualité</p>
+        </div>
+    </section>
+
+    <!-- Filters and Controls -->
+    <section class="products-controls">
+        <div class="container">
+            <div class="controls-content">
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="category-filter">Catégorie</label>
+                        <select id="category-filter">
+                            <option value="all">Toutes les catégories</option>
+                            <option value="smartphones">Smartphones</option>
+                            <option value="computers">Ordinateurs</option>
+                            <option value="audio">Audio</option>
+                            <option value="watches">Montres</option>
+                            <option value="clothing">Vêtements</option>
+                            <option value="shoes">Chaussures</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="price-filter">Prix</label>
+                        <select id="price-filter">
+                            <option value="all">Tous les prix</option>
+                            <option value="0-50">0 - 50 €</option>
+                            <option value="50-100">50 - 100 €</option>
+                            <option value="100-200">100 - 200 €</option>
+                            <option value="200+">200 € et plus</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="availability-filter">Disponibilité</label>
+                        <select id="availability-filter">
+                            <option value="all">Tous</option>
+                            <option value="in-stock">En stock</option>
+                            <option value="out-of-stock">Rupture de stock</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="sort-controls">
+                    <div class="sort-group">
+                        <label for="sort-select">Trier par</label>
+                        <select id="sort-select">
+                            <option value="name">Nom (A-Z)</option>
+                            <option value="price-low">Prix croissant</option>
+                            <option value="price-high">Prix décroissant</option>
+                            <option value="rating">Note clients</option>
+                        </select>
+                    </div>
+
+                    <div class="view-controls">
+                        <button class="view-btn active" data-view="grid">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-btn" data-view="list">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <div class="products-header">
+                <div class="results-info">
+                    <span id="results-count">0</span> produits trouvés
+                </div>
+                <div class="active-filters" id="active-filters">
+                    <!-- Active filters will be shown here -->
+                </div>
+            </div>
+
+            <div class="products-grid" id="products-grid">
+                <!-- Products will be loaded dynamically -->
+            </div>
+
+            <div class="load-more">
+                <button class="btn btn-secondary" id="load-more-btn">
+                    <i class="fas fa-plus"></i>
+                    Charger plus de produits
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Restez informé</h2>
+                <p>Abonnez-vous à notre newsletter pour recevoir nos meilleures offres</p>
+                <form class="newsletter-form" id="newsletter-form">
+                    <input type="email" placeholder="Votre adresse email" required>
+                    <button type="submit" class="btn btn-primary">S'inscrire</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span>ShopElite</span>
+                    </div>
+                    <p>Votre boutique en ligne de confiance depuis 2024.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens rapides</h3>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="html/products.html">Produits</a></li>
+                        <li><a href="html/cart.html">Panier</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Service client</h3>
+                    <ul>
+                        <li><a href="#">Aide & FAQ</a></li>
+                        <li><a href="#">Livraison</a></li>
+                        <li><a href="#">Retours</a></li>
+                        <li><a href="#">CGV</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> contact@shopelite.com</p>
+                    <p><i class="fas fa-phone"></i> +243 000 000 000</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Kinshasa, RDC</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ShopElite. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/products-page.js"></script>
+</body>
+</html>

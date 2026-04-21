@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détail Produit - ShopElite</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../Style/style.css">
+    <style>
+        /* ============================================
+           DÉTAIL PRODUIT - STYLES PERSONNALISÉS
+           ============================================ */
+
+        .breadcrumb {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            padding: 1.5rem 0;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        .breadcrumb span {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Container Principal */
+        .product-detail-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .product-detail-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* ============================================
+           GALERIE D'IMAGES
+           ============================================ */
+
+        .product-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .product-main-image {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 12px;
+            background: var(--bg-secondary);
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-main-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: linear-gradient(135deg, #ff6b6b, #ff5252);
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .product-thumbnails {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .thumbnail {
+            width: 100%;
+            padding-bottom: 100%;
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            background: var(--bg-secondary);
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .thumbnail img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .thumbnail:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .thumbnail.active {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        /* ============================================
+           INFORMATIONS PRODUIT
+           ============================================ */
+
+        .product-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .product-header {
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .product-category {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .product-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0.5rem 0;
+            line-height: 1.2;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .stars {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .star {
+            color: #ffc107;
+            font-size: 1rem;
+        }
+
+        .rating-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .review-count {
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .review-count:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        /* Prix */
+        .product-price-section {
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding-bottom: 2rem;
+        }
+
+        .price-display {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .price-current {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .price-original {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        .price-save {
+            color: #ff6b6b;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .availability {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .availability.in-stock {
+            color: #22c55e;
+        }
+
+        .availability.low-stock {
+            color: #f59e0b;
+        }
+
+        .availability-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+
+        /* Options du produit */
+        .product-options {
+            padding-top: 1.5rem;
+        }
+
+        .option-group {
+            margin-bottom: 2rem;
+        }
+
+        .option-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .option-values {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .option-button {
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border-color);
+            background: transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            color: var(--text-primary);
+        }
+
+        .option-button:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .option-button.selected {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Quantité */
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--bg-secondary);
+            padding: 0.75rem;
+            border-radius: 8px;
+            width: fit-content;
+        }
+
+        .qty-btn {
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: var(--text-primary);
+        }
+
+        .qty-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .qty-input {
+            width: 50px;
+            text-align: center;
+            border: none;
+            background: transparent;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* Actions */
+        .product-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            padding-top: 1.5rem;
+        }
+
+        @media (max-width: 480px) {
+            .product-actions {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .btn-primary-large {
+            padding: 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-add-to-cart {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-add-to-cart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-wishlist {
+            border: 2px solid var(--border-color);
+            background: transparent;
+            color: var(--text-primary);
+        }
+
+        .btn-wishlist:hover {
+            border-color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.1);
+            color: #ff6b6b;
+        }
+
+        /* Description */
+        .product-description {
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+        }
+
+        .description-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .description-text {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .features-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .features-list i {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        /* Avis Clients */
+        .reviews-section {
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            margin-top: 2rem;
+        }
+
+        .reviews-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .review-item {
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1rem;
+        }
+
+        .review-item:last-child {
+            border-bottom: none;
+        }
+
+        .review-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .review-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            gap: 1rem;
+        }
+
+        .review-author {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .review-date {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .review-rating {
+            margin-bottom: 0.5rem;
+        }
+
+        .review-text {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Produits Similaires */
+        .related-products {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .related-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .related-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 1.5rem;
+            }
+        }
+
+        /* Notification Toast */
+        .notification {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            padding: 1.25rem 1.75rem;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(34, 197, 95, 0.3);
+            animation: slideInUp 0.3s ease;
+            z-index: 1000;
+            max-width: 300px;
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <h1 class="logo">🛍️ ShopElite</h1>
+
+    <nav class="nav">
+        <a href="../index.html">Accueil</a>
+        <a href="products.html">Produits</a>
+        <a href="cart.html">Panier</a>
+    </nav>
+
+    <div class="header-actions">
+        <input type="text" placeholder="Rechercher...">
+        <button>🔍</button>
+        <span class="cart-count">0</span>
+    </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="container">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="../index.html">Accueil</a>
+        <span>/</span>
+        <a href="products.html">Produits</a>
+        <span>/</span>
+        <span>Chaussures Modernes Premium</span>
+    </div>
+
+    <!-- Conteneur Principal -->
+    <div class="product-detail-container">
+        <!-- Galerie d'Images -->
+        <div class="product-gallery">
+            <div class="product-main-image">
+                <img id="mainImage" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&h=500&fit=crop" alt="Chaussures Premium">
+                <span class="discount-badge">-35%</span>
+            </div>
+            <div class="product-thumbnails">
+                <div class="thumbnail active" onclick="changeImage(this)">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=150&h=150&fit=crop" alt="">
+                </div>
+                <div class="thumbnail" onclick="changeImage(this)">
+                    <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=150&h=150&fit=crop" alt="">
+                </div>
+                <div class="thumbnail" onclick="changeImage(this)">
+                    <img src="https://images.unsplash.com/photo-1514989940723-e8987b19b46f?w=150&h=150&fit=crop" alt="">
+                </div>
+                <div class="thumbnail" onclick="changeImage(this)">
+                    <img src="https://images.unsplash.com/photo-1507148073716-798d5d28eae0?w=150&h=150&fit=crop" alt="">
+                </div>
+            </div>
+        </div>
+
+        <!-- Informations Produit -->
+        <div class="product-info">
+            <div class="product-header">
+                <span class="product-category">Chaussures</span>
+                <h1 class="product-title">Chaussures Modernes Premium</h1>
+                
+                <div class="product-rating">
+                    <div class="stars">
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star-half-alt star"></i>
+                    </div>
+                    <span class="rating-text">4.5 sur 5</span>
+                    <span class="review-count">(248 avis)</span>
+                </div>
+            </div>
+
+            <!-- Prix -->
+            <div class="product-price-section">
+                <div class="price-display">
+                    <span class="price-current">$64.99</span>
+                    <span class="price-original">$99.99</span>
+                    <span class="price-save">Économisez 35%</span>
+                </div>
+                <div class="availability in-stock">
+                    <span class="availability-dot"></span>
+                    En stock (24 articles disponibles)
+                </div>
+
+                <!-- Options -->
+                <div class="product-options">
+                    <!-- Tailles -->
+                    <div class="option-group">
+                        <label class="option-label">
+                            <i class="fas fa-ruler"></i> Sélectionner votre taille
+                        </label>
+                        <div class="option-values">
+                            <button class="option-button">36</button>
+                            <button class="option-button selected">38</button>
+                            <button class="option-button">40</button>
+                            <button class="option-button">42</button>
+                            <button class="option-button">44</button>
+                        </div>
+                    </div>
+
+                    <!-- Couleurs -->
+                    <div class="option-group">
+                        <label class="option-label">
+                            <i class="fas fa-palette"></i> Couleur
+                        </label>
+                        <div class="option-values">
+                            <button class="option-button" style="background: #000; color: white; border-color: #000;">Noir</button>
+                            <button class="option-button selected" style="background: #fff; border-color: #333;">Blanc</button>
+                            <button class="option-button" style="background: #8b4513; border-color: #8b4513; color: white;">Marron</button>
+                            <button class="option-button" style="background: #1a1a2e; border-color: #1a1a2e; color: white;">Bleu</button>
+                        </div>
+                    </div>
+
+                    <!-- Quantité -->
+                    <div class="option-group">
+                        <label class="option-label">
+                            <i class="fas fa-cube"></i> Quantité
+                        </label>
+                        <div class="quantity-selector">
+                            <button class="qty-btn" onclick="decreaseQty()">−</button>
+                            <input type="number" class="qty-input" id="quantity" value="1" min="1" max="10">
+                            <button class="qty-btn" onclick="increaseQty()">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Boutons d'Action -->
+                <div class="product-actions">
+                    <button class="btn-primary-large btn-add-to-cart" onclick="addToCart()">
+                        <i class="fas fa-shopping-cart"></i> Ajouter au panier
+                    </button>
+                    <button class="btn-primary-large btn-wishlist" onclick="toggleWishlist(this)">
+                        <i class="far fa-heart"></i> Favoris
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Description du Produit -->
+    <div class="product-description">
+        <h2 class="description-title">Description</h2>
+        <p class="description-text">
+            Ces chaussures modernes premium sont conçues pour offrir le confort ultime et un style intemporel. Avec leur semelle orthotique et leur matériau respirant, elles sont idéales pour une utilisation quotidienne ou professionnelle.
+        </p>
+        <p class="description-text">
+            Perfectionnées au fil des années, ces chaussures combinent la durabilité, l'esthétique et le confort pour vous offrir une expérience de port incomparable.
+        </p>
+
+        <h3 class="description-title" style="font-size: 1.1rem; margin-top: 1.5rem;">Caractéristiques principales :</h3>
+        <ul class="features-list">
+            <li><i class="fas fa-check-circle"></i> Semelle orthotique premium</li>
+            <li><i class="fas fa-check-circle"></i> Matériau respirant et durable</li>
+            <li><i class="fas fa-check-circle"></i> Design ergonomique</li>
+            <li><i class="fas fa-check-circle"></i> Garantie 2 ans</li>
+            <li><i class="fas fa-check-circle"></i> Fabrication éco-responsable</li>
+            <li><i class="fas fa-check-circle"></i> Livraison gratuite</li>
+        </ul>
+    </div>
+
+    <!-- Avis Clients -->
+    <div class="reviews-section">
+        <h2 class="reviews-title">
+            <i class="fas fa-comments"></i> Avis Clients (248)
+        </h2>
+
+        <div class="review-item">
+            <div class="review-avatar">MJ</div>
+            <div class="review-content">
+                <div class="review-header">
+                    <span class="review-author">Marie J.</span>
+                    <span class="review-date">Il y a 2 semaines</span>
+                </div>
+                <div class="review-rating">
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                </div>
+                <p class="review-text">
+                    Excellent produit ! Très confortable et le design est magnifique. Je les recommande vivement.
+                </p>
+            </div>
+        </div>
+
+        <div class="review-item">
+            <div class="review-avatar">PC</div>
+            <div class="review-content">
+                <div class="review-header">
+                    <span class="review-author">Pierre C.</span>
+                    <span class="review-date">Il y a 1 mois</span>
+                </div>
+                <div class="review-rating">
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <p class="review-text">
+                    Très bonne qualité, cependant la livraison a pris plus de temps que prévu.
+                </p>
+            </div>
+        </div>
+
+        <div class="review-item">
+            <div class="review-avatar">SL</div>
+            <div class="review-content">
+                <div class="review-header">
+                    <span class="review-author">Sophie L.</span>
+                    <span class="review-date">Il y a 2 mois</span>
+                </div>
+                <div class="review-rating">
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                </div>
+                <p class="review-text">
+                    Parfait ! Je suis très satisfaite de mon achat. Les chaussures sont confortables et élégantes.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Produits Similaires -->
+    <div class="related-products">
+        <h2 class="related-title">Produits Similaires</h2>
+        <div class="related-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=300&h=300&fit=crop" alt="">
+                    <span class="badge">-15%</span>
+                </div>
+                <div class="product-body">
+                    <h3>Baskets Confort</h3>
+                    <p>Légères et confortables</p>
+                    <div class="price">
+                        <span class="current">$45</span>
+                        <span class="old">$59</span>
+                    </div>
+                    <div class="actions">
+                        <button class="btn-cart" onclick="addToCart()">Ajouter</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1514989940723-e8987b19b46f?w=300&h=300&fit=crop" alt="">
+                </div>
+                <div class="product-body">
+                    <h3>Chaussures Classiques</h3>
+                    <p>Élégance intemporelle</p>
+                    <div class="price">
+                        <span class="current">$79</span>
+                    </div>
+                    <div class="actions">
+                        <button class="btn-cart" onclick="addToCart()">Ajouter</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1507148073716-798d5d28eae0?w=300&h=300&fit=crop" alt="">
+                    <span class="badge">NOUVEAU</span>
+                </div>
+                <div class="product-body">
+                    <h3>Chaussures Sport</h3>
+                    <p>Performance et style</p>
+                    <div class="price">
+                        <span class="current">$89</span>
+                    </div>
+                    <div class="actions">
+                        <button class="btn-cart" onclick="addToCart()">Ajouter</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&h=300&fit=crop" alt="">
+                    <span class="badge">-25%</span>
+                </div>
+                <div class="product-body">
+                    <h3>Chaussures Formel</h3>
+                    <p>Pour les occasions spéciales</p>
+                    <div class="price">
+                        <span class="current">$95</span>
+                        <span class="old">$129</span>
+                    </div>
+                    <div class="actions">
+                        <button class="btn-cart" onclick="addToCart()">Ajouter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4>À propos</h4>
+            <p>ShopElite offre les meilleurs produits avec la qualité et le service premium.</p>
+        </div>
+        <div class="footer-section">
+            <h4>Liens rapides</h4>
+            <ul>
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="products.html">Produits</a></li>
+                <li><a href="cart.html">Panier</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Contact</h4>
+            <p>Email: contact@shopelite.com</p>
+            <p>Tél: +33 (0)1 23 45 67 89</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 ShopElite. Tous droits réservés.</p>
+    </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="../js/cart.js"></script>
+<script>
+    // Galerie d'images
+    function changeImage(element) {
+        document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
+        element.classList.add('active');
+        document.getElementById('mainImage').src = element.querySelector('img').src.replace('w=150&h=150', 'w=500&h=500');
+    }
+
+    // Quantité
+    function increaseQty() {
+        const qty = document.getElementById('quantity');
+        qty.value = parseInt(qty.value) + 1;
+    }
+
+    function decreaseQty() {
+        const qty = document.getElementById('quantity');
+        if (qty.value > 1) qty.value = parseInt(qty.value) - 1;
+    }
+
+    // Ajouter au panier
+    function addToCart() {
+        const quantity = parseInt(document.getElementById('quantity').value);
+        const product = {
+            id: 1,
+            name: 'Chaussures Modernes Premium',
+            price: 64.99,
+            quantity: quantity,
+            image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=150&h=150&fit=crop'
+        };
+
+        // Ajouter au panier (utiliser la classe CartManager si disponible)
+        if (typeof cartManager !== 'undefined') {
+            cartManager.addToCart(product);
+        } else {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push(product);
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Notification
+        showNotification(`${quantity} article(s) ajouté(s) au panier!`);
+        
+        // Reset quantity
+        document.getElementById('quantity').value = 1;
+    }
+
+    // Favoris
+    function toggleWishlist(btn) {
+        btn.classList.toggle('active');
+        const isActive = btn.classList.contains('active');
+        btn.querySelector('i').className = isActive ? 'fas fa-heart' : 'far fa-heart';
+        
+        if (isActive) {
+            showNotification('Ajouté aux favoris');
+        }
+    }
+
+    // Notification Toast
+    function showNotification(message) {
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+        document.body.appendChild(notification);
+
+        setTimeout(() => notification.remove(), 3000);
+    }
+
+    // Initialiser le compteur du panier
+    function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const count = cart.reduce((total, item) => total + item.quantity, 0);
+        document.querySelector('.cart-count').textContent = count;
+    }
+
+    // Appeler au chargement
+    updateCartCount();
+</script>
+
+</body>
+</html>
